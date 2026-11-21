@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "coillab"
+version = "0.1.0"
+description = "Design and analysis of inductive (search-coil) magnetic sensors"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "Shakya Madanayake" }]
+keywords = ["magnetometer", "search coil", "induction coil", "inductance", "sensor design", "ELF", "VLF"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Intended Audience :: Science/Research",
+]
+dependencies = ["numpy>=1.22", "scipy>=1.8"]
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.5"]
+dev = ["pytest>=7", "matplotlib>=3.5", "ruff"]
+
+[project.scripts]
+coillab = "coillab.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/coillab"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B"]
